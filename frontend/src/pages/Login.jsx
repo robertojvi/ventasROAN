@@ -5,8 +5,8 @@ import { useAuth } from '../context/AuthContext.jsx'
 export default function Login() {
   const { login, usuario } = useAuth()
   const navigate = useNavigate()
-  const [email, setEmail] = useState('admin@ventas.com')
-  const [password, setPassword] = useState('admin123')
+  const [email, setEmail] = useState()
+  const [password, setPassword] = useState()
   const [error, setError] = useState('')
   const [cargando, setCargando] = useState(false)
 
@@ -29,7 +29,7 @@ export default function Login() {
   return (
     <div className="login-page">
       <form className="login-card" onSubmit={onSubmit}>
-        <h1>Sistema de Ventas</h1>
+        <h1>Sistema de Ventas GATA</h1>
         <p className="subtitle">Inicia sesión para continuar</p>
         {error && <div className="error" style={{ marginBottom: 10 }}>{error}</div>}
         <div style={{ marginBottom: 12 }}>

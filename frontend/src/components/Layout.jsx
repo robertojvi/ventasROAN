@@ -13,7 +13,7 @@ export default function Layout() {
   return (
     <div className="layout">
       <aside className="sidebar">
-        <h2>Sistema de Ventas</h2>
+        <h2>Sistema de Ventas GATA</h2>
         <nav>
           <NavLink to="/" end>Inicio</NavLink>
           <NavLink to="/productos">Productos</NavLink>
