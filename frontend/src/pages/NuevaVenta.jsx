@@ -2,7 +2,12 @@ import { useEffect, useMemo, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import api from '../api/client.js'
 
-const hoy = () => new Date().toISOString().slice(0, 10)
+const hoy = () => {
+  const d = new Date()
+  const mm = String(d.getMonth() + 1).padStart(2, '0')
+  const dd = String(d.getDate()).padStart(2, '0')
+  return `${d.getFullYear()}-${mm}-${dd}`
+}
 
 export default function NuevaVenta() {
   const navigate = useNavigate()
