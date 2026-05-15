@@ -174,3 +174,143 @@ tr:hover td { background: #f9fafb; }
 }
 .stat .label { font-size: 12px; color: #6b7280; text-transform: uppercase; }
 .stat .value { font-size: 22px; font-weight: 700; margin-top: 4px; }
+
+/* ── Mobile topbar & hamburger (hidden on desktop) ── */
+.topbar {
+  display: none;
+}
+.hamburger {
+  background: none;
+  border: none;
+  color: #fff;
+  font-size: 22px;
+  padding: 4px 8px;
+  cursor: pointer;
+  line-height: 1;
+}
+.topbar-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+}
+
+/* ── Sidebar overlay (mobile only, rendered conditionally) ── */
+.sidebar-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.45);
+  z-index: 150;
+}
+
+/* ── Responsive: tablet & mobile ── */
+@media (max-width: 768px) {
+  /* Stack layout: topbar on top, main below */
+  .layout {
+    flex-direction: column;
+  }
+
+  .topbar {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: #1f2d3d;
+    padding: 14px 16px;
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    flex-shrink: 0;
+  }
+
+  /* Sidebar slides in from left as a full-height overlay */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 72vw;
+    max-width: 280px;
+    z-index: 200;
+    transform: translateX(-100%);
+    transition: transform 0.25s ease;
+    overflow-y: auto;
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+
+  .main {
+    flex: 1;
+    padding: 14px;
+    min-width: 0;
+  }
+
+  .page-title {
+    font-size: 20px;
+    margin-bottom: 14px;
+  }
+
+  /* Cards scroll horizontally when table overflows */
+  .card {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* Let tables take their natural width so wide ones trigger card scroll */
+  table {
+    min-width: 480px;
+  }
+
+  /* Tighter cells on small screens */
+  th, td {
+    padding: 9px 10px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  /* 2-column stat grid fits nicely on phones */
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* Larger tap targets */
+  button {
+    min-height: 40px;
+    font-size: 14px;
+  }
+  .row-actions button {
+    min-height: 32px;
+    padding: 4px 10px;
+  }
+
+  /* Date inputs shrink to not break toolbar wrap */
+  .toolbar input[type="date"] {
+    width: 140px !important;
+    flex-shrink: 0;
+  }
+
+  /* Login card fills width on phones */
+  .login-card {
+    width: calc(100% - 32px);
+    max-width: 400px;
+    padding: 24px 20px;
+  }
+
+  /* Compact inputs inside table rows */
+  table input, table select {
+    padding: 6px 8px;
+    font-size: 13px;
+  }
+  table input[type="number"] {
+    width: 72px !important;
+  }
+
+  .modal {
+    width: 96%;
+    padding: 16px;
+    max-height: 92vh;
+  }
+
+  .modal-actions {
+    flex-wrap: wrap;
+  }
+}
