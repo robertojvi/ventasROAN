@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
+import { useTheme } from '../context/ThemeContext.jsx'
 
 export default function Layout() {
   const { usuario, logout } = useAuth()
+  const { dark, toggle } = useTheme()
   const navigate = useNavigate()
   const [sidebarOpen, setSidebarOpen] = useState(false)
 
@@ -21,6 +23,9 @@ export default function Layout() {
       <div className="topbar">
         <button className="hamburger" onClick={() => setSidebarOpen(o => !o)}>&#9776;</button>
         <span className="topbar-title">Sistema de Ventas GATA</span>
+        <button className="theme-toggle topbar-theme" onClick={toggle} title={dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}>
+          {dark ? '☀' : '🌙'}
+        </button>
       </div>
 
       <aside className={`sidebar${sidebarOpen ? ' open' : ''}`}>
@@ -39,6 +44,9 @@ export default function Layout() {
           <div>Rol: {usuario?.rol}</div>
           <button onClick={cerrarSesion}>Cerrar sesión</button>
         </div>
+        <button className="theme-toggle" onClick={toggle} title={dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}>
+          {dark ? '☀ Modo claro' : '🌙 Modo oscuro'}
+        </button>
       </aside>
 
       <main className="main">

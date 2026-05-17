@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { useNavigate, Navigate } from 'react-router-dom'
 import { useAuth } from '../context/AuthContext.jsx'
+import { useTheme } from '../context/ThemeContext.jsx'
 
 export default function Login() {
   const { login, usuario } = useAuth()
+  const { dark, toggle } = useTheme()
   const navigate = useNavigate()
   const [email, setEmail] = useState()
   const [password, setPassword] = useState()
@@ -28,6 +30,9 @@ export default function Login() {
 
   return (
     <div className="login-page">
+      <button className="login-theme-btn" onClick={toggle} title={dark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro'}>
+        {dark ? '☀ Claro' : '🌙 Oscuro'}
+      </button>
       <form className="login-card" onSubmit={onSubmit}>
         <h1>Sistema de Ventas GATA</h1>
         <p className="subtitle">Inicia sesión para continuar</p>
